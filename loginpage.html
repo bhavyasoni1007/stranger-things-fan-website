@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Crack the Code</title>
+
+<style>
+body {
+  background-color: black;
+  color: #ccc;
+  font-family: 'Courier New', monospace;
+  text-align: center;
+}
+
+h1 {
+  color: red;
+  letter-spacing: 3px;
+  text-shadow: 0 0 15px red;
+}
+
+.box {
+  border: 2px solid red;
+  width: 60%;
+  margin: 30px auto;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 5px 5px 25px red;
+  border: 2px solid red;
+  box-shadow: 0 0 10px darkred;
+  transition: 0.5s;
+}
+
+input {
+  padding: 10px;
+  width: 200px;
+  border-radius: 20px;
+  border: 2px solid red;
+  background: black;
+  color: white;
+  text-align: center;
+}
+
+button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  border: 2px solid red;
+  background: transparent;
+  color: red;
+  font-weight: bold;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: red;
+  color: black;
+  box-shadow: 0 0 20px red;
+}
+
+
+.msg {
+  margin-top: 15px;
+  color: red;
+  font-style: italic;
+}
+
+.flicker {
+   animation: flicker 10s infinite;
+   text-shadow:
+    0 0 5px red,
+    0 0 15px red,
+    0 0 30px darkred;
+}
+
+@keyframes flicker {
+   0%   { opacity: 1; }
+  5%   { opacity: 0.3; }
+  10%  { opacity: 1; }
+  15%  { opacity: 0.3; }
+  20%  { opacity: 1; }
+  80% { opacity: 1; }
+}
+
+.light-on {
+  border-color: #ff0000;
+  box-shadow:
+    0 0 15px red,
+    0 0 30px red,
+    0 0 60px crimson;
+}
+</style>
+</head>
+
+<body>
+
+<h1 class="flicker">THE GATE IS SEALED</h1>
+<p class="flicker">Only those who know the truth may enter the Upside Down.</p>
+<div class="box" id="clue1">
+  <h2>CLUE 1</h2>
+  <p>Add the digits of the year Stranger Things began.</p>
+  <input type="text" id="ans1">
+  <br>
+  <button onclick="check1()">Submit</button>
+  <p class="msg" id="msg1"></p>
+</div>
+
+<div class="box hidden" id="clue2">
+  <h2>CLUE 2</h2>
+  <p>What is the name of the town where it all began?</p>
+  <input type="text" id="ans2">
+  <br>
+  <button onclick="check2()">Submit</button>
+  <p class="msg" id="msg2"></p>
+</div>
+
+<div class="box hidden" id="clue3">
+  <h2>FINAL CLUE</h2>
+  <p>Who opened the gate to the Upside Down?</p>
+  <input type="text" id="ans3">
+  <br>
+  <button onclick="check3()" class="flicker">OPEN THE GATE</button>
+  <p class="msg" id="msg3"></p>
+</div>
+
+<script>
+function check1() {
+  let a = document.getElementById("ans1").value;
+  if(a == "9") {
+    document.getElementById("clue2").classList.remove("hidden");
+    document.getElementById("clue1").classList.add("light-on");    
+    document.getElementById("msg1").innerHTML = "Correct. The gate is weakening...";
+  } else {
+    document.getElementById("msg1").innerHTML = "Wrong answer. Try again.";
+  }
+}
+
+function check2() {
+  let b = document.getElementById("ans2").value;
+  if(b == "HAWKINS") {
+    document.getElementById("clue2").classList.add("light-on");
+    document.getElementById("clue3").classList.remove("hidden");
+    document.getElementById("msg2").innerText = "The lights flicker...";
+  } else {
+    document.getElementById("msg2").innerText = "The town hides its name.";
+  }
+}
+
+function check3() {
+  let c = document.getElementById("ans3").value;
+  if(c == "ELEVEN") {
+     document.getElementById("clue3").classList.add("light-on");
+     window.location.href = "final.html";
+  } else {
+    document.getElementById("msg3").innerText = "The gate remains closed.";
+  }
+}
+</script>
+
+
+
+<hr>
+</form>
+</body>
+</html>
